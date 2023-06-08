@@ -1,0 +1,45 @@
+name: airbnb_passport
+description: Airbnb Host Passport made with Flutter
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.19.6 <4.0.0'
+  flutter: '>=3.7.12'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_animate: 4.1.1+1
+  flutter_inset_box_shadow: 1.0.8
+  intl: 0.18.1
+  visibility_detector: 0.4.0+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: 5.0.0+1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/avatars/
+    - assets/apartments/
+    - assets/fonts/
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/PlusJakartaSans-ExtraLight.ttf
+          weight: 200
