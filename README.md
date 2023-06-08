@@ -1,5 +1,7 @@
 # Airbnb Host Passport made with Flutter
 
+https://github.com/ksokolovskyi/airbnb_passport/assets/30288967/4ef0871f-3964-4dfe-9cc5-9701affbf6c9
+
 This demo shows the [Flutter](https://flutter.dev/) implementations of the [Airbnb](airbnb.com) Host Passport introduced in the latest [Summer Release](https://www.airbnb.com/release).
 
 Useful Links:
