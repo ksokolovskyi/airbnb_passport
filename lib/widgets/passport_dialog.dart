@@ -34,6 +34,7 @@ class PassportDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppBar(
+                primary: false,
                 leading: IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
