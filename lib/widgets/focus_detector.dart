@@ -1,11 +1,14 @@
+// ignore_for_file: document_ignores
+
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-typedef FocusDetectorWidgetBuilder = Widget Function(
-  BuildContext context,
-  // ignore: avoid_positional_boolean_parameters
-  bool isFocused,
-);
+typedef FocusDetectorWidgetBuilder =
+    Widget Function(
+      BuildContext context,
+      // ignore: avoid_positional_boolean_parameters
+      bool isFocused,
+    );
 
 enum _FocusDetectorType {
   desktop,

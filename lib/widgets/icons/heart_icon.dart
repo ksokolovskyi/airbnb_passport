@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations, avoid_redundant_argument_values
+// ignore_for_file: cascade_invocations, document_ignores
 
 import 'package:airbnb_passport/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class HeartIcon extends StatelessWidget {
 }
 
 /// Custom painter for the heart icon.
-/// 
+///
 /// Made with https://fluttershapemaker.com/.
 class HeartIconPainter extends CustomPainter {
   const HeartIconPainter();
@@ -110,7 +110,7 @@ class HeartIconPainter extends CustomPainter {
 
     final fillPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = DemoColors.dark.withOpacity(0.6);
+      ..color = DemoColors.dark.withValues(alpha: 0.6);
 
     canvas.drawPath(path, fillPaint);
     canvas.drawPath(path, strokePaint);

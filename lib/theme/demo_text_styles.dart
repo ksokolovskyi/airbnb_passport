@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 abstract class DemoTextStyles {
   /// Creates a [TextTheme] from the text styles.
   static TextTheme get textTheme => const TextTheme(
-        headlineLarge: headlineLarge,
-        headlineMedium: headlineMedium,
-        titleLarge: titleLarge,
-        titleMedium: titleMedium,
-        bodyLarge: bodyLarge,
-        labelMedium: labelMedium,
-        labelSmall: labelSmall,
-      );
+    headlineLarge: headlineLarge,
+    headlineMedium: headlineMedium,
+    titleLarge: titleLarge,
+    titleMedium: titleMedium,
+    bodyLarge: bodyLarge,
+    labelMedium: labelMedium,
+    labelSmall: labelSmall,
+  );
 
   /// Headline large text style.
   static const TextStyle headlineLarge = TextStyle(

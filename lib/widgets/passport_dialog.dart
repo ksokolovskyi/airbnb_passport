@@ -85,7 +85,8 @@ class PassportDialog extends StatelessWidget {
                         icon: const StarsIcon(
                           size: Size.square(20),
                         ),
-                        text: 'What makes my home unique: '
+                        text:
+                            'What makes my home unique: '
                             '${host.info.uniqueness}',
                       ),
                     ],

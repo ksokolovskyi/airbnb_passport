@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations, avoid_redundant_argument_values
+// ignore_for_file: cascade_invocations, avoid_redundant_argument_values, document_ignores, lines_longer_than_80_chars
 
 import 'package:airbnb_passport/theme/theme.dart';
 import 'package:flutter/material.dart';

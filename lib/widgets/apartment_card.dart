@@ -134,7 +134,7 @@ class _ApartmentCardState extends State<ApartmentCard> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
           const SizedBox(height: 4),

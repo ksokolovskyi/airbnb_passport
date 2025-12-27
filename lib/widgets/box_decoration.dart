@@ -1,10 +1,10 @@
-// ignore_for_file: use_super_parameters, cast_nullable_to_non_nullable, prefer_asserts_with_message, omit_local_variable_types, require_trailing_commas, prefer_final_locals, cascade_invocations, lines_longer_than_80_chars, comment_references
+// ignore_for_file: use_super_parameters, cast_nullable_to_non_nullable, prefer_asserts_with_message, omit_local_variable_types, prefer_final_locals, cascade_invocations, lines_longer_than_80_chars, comment_references, document_ignores
 
 import 'dart:math' as math;
 
 import 'package:flutter/painting.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter/painting.dart' as painting;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter_inset_shadow/flutter_inset_shadow.dart';
 
 /// This is a copy of `BoxDecoration` from flutter_inset_box_shadow:
 /// https://pub.dev/packages/flutter_inset_box_shadow
@@ -21,15 +21,15 @@ class BoxDecoration extends painting.BoxDecoration {
     BlendMode? backgroundBlendMode,
     BoxShape shape = BoxShape.rectangle,
   }) : super(
-          color: color,
-          image: image,
-          border: border,
-          borderRadius: borderRadius,
-          boxShadow: boxShadow,
-          gradient: gradient,
-          backgroundBlendMode: backgroundBlendMode,
-          shape: shape,
-        );
+         color: color,
+         image: image,
+         border: border,
+         borderRadius: borderRadius,
+         boxShadow: boxShadow,
+         gradient: gradient,
+         backgroundBlendMode: backgroundBlendMode,
+         shape: shape,
+       );
 
   /// Creates a copy of this object but with the given fields replaced with the
   /// new values.
@@ -164,7 +164,8 @@ class _InsetBoxDecorationPainter extends BoxPainter {
   Rect? _rectForCachedBackgroundPaint;
   Paint _getBackgroundPaint(Rect rect, TextDirection? textDirection) {
     assert(
-        _decoration.gradient != null || _rectForCachedBackgroundPaint == null);
+      _decoration.gradient != null || _rectForCachedBackgroundPaint == null,
+    );
 
     if (_cachedBackgroundPaint == null ||
         (_decoration.gradient != null &&
@@ -188,14 +189,18 @@ class _InsetBoxDecorationPainter extends BoxPainter {
   }
 
   void _paintBox(
-      Canvas canvas, Rect rect, Paint paint, TextDirection? textDirection) {
+    Canvas canvas,
+    Rect rect,
+    Paint paint,
+    TextDirection? textDirection,
+  ) {
     switch (_decoration.shape) {
       case BoxShape.circle:
         assert(_decoration.borderRadius == null);
         final Offset center = rect.center;
         final double radius = rect.shortestSide / 2.0;
         canvas.drawCircle(center, radius, paint);
-        break;
+
       case BoxShape.rectangle:
         if (_decoration.borderRadius == null) {
           canvas.drawRect(rect, paint);
@@ -205,7 +210,6 @@ class _InsetBoxDecorationPainter extends BoxPainter {
             paint,
           );
         }
-        break;
     }
   }
 
@@ -224,8 +228,9 @@ class _InsetBoxDecorationPainter extends BoxPainter {
         }
       }
       final Paint paint = boxShadow.toPaint();
-      final Rect bounds =
-          rect.shift(boxShadow.offset).inflate(boxShadow.spreadRadius);
+      final Rect bounds = rect
+          .shift(boxShadow.offset)
+          .inflate(boxShadow.spreadRadius);
       _paintBox(canvas, bounds, paint, textDirection);
     }
   }
@@ -247,7 +252,10 @@ class _InsetBoxDecorationPainter extends BoxPainter {
 
   DecorationImagePainter? _imagePainter;
   void _paintBackgroundImage(
-      Canvas canvas, Rect rect, ImageConfiguration configuration) {
+    Canvas canvas,
+    Rect rect,
+    ImageConfiguration configuration,
+  ) {
     if (_decoration.image == null) return;
     _imagePainter ??= _decoration.image!.createPainter(onChanged!);
     Path? clipPath;
@@ -258,15 +266,16 @@ class _InsetBoxDecorationPainter extends BoxPainter {
         final double radius = rect.shortestSide / 2.0;
         final Rect square = Rect.fromCircle(center: center, radius: radius);
         clipPath = Path()..addOval(square);
-        break;
+
       case BoxShape.rectangle:
         if (_decoration.borderRadius != null) {
           clipPath = Path()
-            ..addRRect(_decoration.borderRadius!
-                .resolve(configuration.textDirection)
-                .toRRect(rect));
+            ..addRRect(
+              _decoration.borderRadius!
+                  .resolve(configuration.textDirection)
+                  .toRRect(rect),
+            );
         }
-        break;
     }
     _imagePainter!.paint(canvas, rect, clipPath, configuration);
   }
@@ -286,7 +295,8 @@ class _InsetBoxDecorationPainter extends BoxPainter {
 
       final color = boxShadow.color;
 
-      final borderRadiusGeometry = _decoration.borderRadius ??
+      final borderRadiusGeometry =
+          _decoration.borderRadius ??
           (_decoration.shape == BoxShape.circle
               ? BorderRadius.circular(rect.longestSide)
               : BorderRadius.zero);

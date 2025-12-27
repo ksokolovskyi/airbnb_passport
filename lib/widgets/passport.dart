@@ -6,7 +6,7 @@ import 'package:airbnb_passport/theme/theme.dart';
 import 'package:airbnb_passport/widgets/widgets.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
+import 'package:flutter_inset_shadow/flutter_inset_shadow.dart'
     hide BoxDecoration;
 
 class PassportController extends ValueNotifier<bool> {
@@ -45,61 +45,64 @@ class Passport extends StatelessWidget {
             valueListenable: controller,
             builder: (context, isOpen, _) {
               return Stack(
-                children: [
-                  Hero(
-                    tag: 'back_page_${host.id}',
-                    createRectTween: (begin, end) {
-                      return BackPageRectTween(
-                        begin: begin,
-                        end: end,
-                      );
-                    },
-                    flightShuttleBuilder: _backPageFlightShuttleBuilder,
-                    child: const _BackPage(),
-                  ),
-                  Hero(
-                    tag: 'front_page_${host.id}',
-                    createRectTween: (begin, end) {
-                      return FrontPageRectTween(
-                        begin: begin,
-                        end: end,
-                        flightDirection: HeroFlightDirection.pop,
-                      );
-                    },
-                    flightShuttleBuilder: (
-                      flightContext,
-                      animation,
-                      flightDirection,
-                      fromHeroContext,
-                      toHeroContext,
-                    ) {
-                      return _frontPageFlightShuttleBuilder(
-                        flightContext,
-                        animation,
-                        flightDirection,
-                        fromHeroContext,
-                        toHeroContext,
-                        isOpen ? 0.17 : 0,
-                      );
-                    },
-                    child: _FrontPage(avatarPath: host.avatarPath)
-                        .animate(target: isOpen ? 1 : 0)
-                        .flipH(
-                          delay: Duration.zero,
-                          begin: 0,
-                          end: 0.17,
-                          perspective: 0.9,
-                          alignment: Alignment.centerLeft,
-                          curve: isOpen
-                              ? const ElasticOutCurve(0.6)
-                              : Curves.easeIn,
-                          duration: isOpen
-                              ? const Duration(milliseconds: 800)
-                              : const Duration(milliseconds: 300),
-                        ),
-                  ),
-                ],
-              ).animate(target: isOpen ? 1 : 0).moveY(
+                    children: [
+                      Hero(
+                        tag: 'back_page_${host.id}',
+                        createRectTween: (begin, end) {
+                          return BackPageRectTween(
+                            begin: begin,
+                            end: end,
+                          );
+                        },
+                        flightShuttleBuilder: _backPageFlightShuttleBuilder,
+                        child: const _BackPage(),
+                      ),
+                      Hero(
+                        tag: 'front_page_${host.id}',
+                        createRectTween: (begin, end) {
+                          return FrontPageRectTween(
+                            begin: begin,
+                            end: end,
+                            flightDirection: HeroFlightDirection.pop,
+                          );
+                        },
+                        flightShuttleBuilder:
+                            (
+                              flightContext,
+                              animation,
+                              flightDirection,
+                              fromHeroContext,
+                              toHeroContext,
+                            ) {
+                              return _frontPageFlightShuttleBuilder(
+                                flightContext,
+                                animation,
+                                flightDirection,
+                                fromHeroContext,
+                                toHeroContext,
+                                isOpen ? 0.17 : 0,
+                              );
+                            },
+                        child: _FrontPage(avatarPath: host.avatarPath)
+                            .animate(target: isOpen ? 1 : 0)
+                            .flipH(
+                              delay: Duration.zero,
+                              begin: 0,
+                              end: 0.17,
+                              perspective: 0.9,
+                              alignment: Alignment.centerLeft,
+                              curve: isOpen
+                                  ? const ElasticOutCurve(0.6)
+                                  : Curves.easeIn,
+                              duration: isOpen
+                                  ? const Duration(milliseconds: 800)
+                                  : const Duration(milliseconds: 300),
+                            ),
+                      ),
+                    ],
+                  )
+                  .animate(target: isOpen ? 1 : 0)
+                  .moveY(
                     delay: Duration.zero,
                     begin: 0,
                     end: -8,
@@ -132,9 +135,11 @@ class Passport extends StatelessWidget {
     final fromSize = fromBox.size;
     final toSize = toBox.size;
 
-    final scaleX = math.min(fromSize.width, toSize.width) /
+    final scaleX =
+        math.min(fromSize.width, toSize.width) /
         math.max(fromSize.width, toSize.width);
-    final scaleY = math.min(fromSize.height, toSize.height) /
+    final scaleY =
+        math.min(fromSize.height, toSize.height) /
         math.max(fromSize.height, toSize.height);
 
     return AnimatedBuilder(
@@ -182,8 +187,9 @@ class Passport extends StatelessWidget {
             ? math.pi * (startFrom + (1 - startFrom) * animation.value)
             : math.pi * animation.value;
 
-        final isFirstHalf =
-            didPush ? angle <= math.pi / 2 : angle >= math.pi / 2;
+        final isFirstHalf = didPush
+            ? angle <= math.pi / 2
+            : angle >= math.pi / 2;
 
         final child = isFirstHalf ? from : to;
 
@@ -216,9 +222,11 @@ class Passport extends StatelessWidget {
     final fromSize = fromBox.size;
     final toSize = toBox.size;
 
-    final scaleX = math.min(fromSize.width, toSize.width) /
+    final scaleX =
+        math.min(fromSize.width, toSize.width) /
         math.max(fromSize.width, toSize.width);
-    final scaleY = math.min(fromSize.height, toSize.height) /
+    final scaleY =
+        math.min(fromSize.height, toSize.height) /
         math.max(fromSize.height, toSize.height);
 
     return AnimatedBuilder(
@@ -288,23 +296,23 @@ class _FrontPage extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: DemoColors.black.withOpacity(0.1),
+                color: DemoColors.black.withValues(alpha: 0.1),
                 offset: const Offset(0, 6),
                 blurRadius: 7,
               ),
               BoxShadow(
-                color: DemoColors.black.withOpacity(0.15),
+                color: DemoColors.black.withValues(alpha: 0.15),
                 offset: const Offset(0, 2),
                 blurRadius: 3,
               ),
               BoxShadow(
-                color: DemoColors.black.withOpacity(0.23),
+                color: DemoColors.black.withValues(alpha: 0.23),
                 offset: const Offset(0, 1),
                 blurRadius: 1,
                 inset: true,
               ),
               BoxShadow(
-                color: DemoColors.black.withOpacity(0.216),
+                color: DemoColors.black.withValues(alpha: 0.216),
                 offset: const Offset(1, 1),
                 blurRadius: 1,
                 inset: true,
@@ -316,7 +324,7 @@ class _FrontPage extends StatelessWidget {
                 inset: true,
               ),
               BoxShadow(
-                color: DemoColors.white.withOpacity(0.35),
+                color: DemoColors.white.withValues(alpha: 0.35),
                 offset: const Offset(0, -1),
                 blurRadius: 0.5,
                 inset: true,
